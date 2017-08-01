@@ -146,29 +146,22 @@ function populateTree(valArr){
 
 populateTree([69,65,83,89,81,85,69,83,84,73,79,78]);
 
-function findHeight(tree, depth=0, height){
-  height = 0;
+function findHeight(tree, depth=0){
+  let height = 0;
   if(!tree.left && !tree.right){
-    console.log(tree);
-    console.log();
-    console.log('depth at bottom: ', depth);
-    if (depth > height){
-      height = depth;
-    }
-    console.log('height at bottom', height);
-    return height;
+    return depth;
   }
   depth++;
   if(tree.left){
-    let num = findHeight(tree.left, depth, height)
-    if(num > height){
-      height = num;
+    let thisDepth = findHeight(tree.left, depth);
+    if(thisDepth > height){
+      height = thisDepth;
     }
   }
   if(tree.right){
-    let num = findHeight(tree.right, depth, height);
-    if(num > height){
-      height = num;
+    let thisDepth = findHeight(tree.right, depth);
+    if(thisDepth > height){
+      height = thisDepth;
     }
   }
   return height;

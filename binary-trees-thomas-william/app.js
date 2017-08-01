@@ -144,7 +144,7 @@ function populateTree(valArr){
   console.log('Tree: ', heightTree);
 }
 
-populateTree([69,65,83,89,81,85,69,83,84,73,79,78]);
+populateTree([69,65,83,89,81,85,84,73,79,78]);
 
 function findHeight(tree, depth=0){
   let height = 0;
@@ -167,4 +167,29 @@ function findHeight(tree, depth=0){
   return height;
 }
 
-console.log(`THE HEIGHT OF THE TREE IS:`, findHeight(heightTree));
+// console.log(`THE HEIGHT OF THE TREE IS:`, findHeight(heightTree));
+
+function isBinarySearch(tree) {
+  if (tree.right === null && tree.left === null) {
+    return true;
+  }
+  if (tree.left) {
+    if (tree.left.value > tree.value) {
+      return false;
+    }
+    isBinarySearch(tree.left);
+  }
+  if (tree.right) {
+    if (tree.right.value < tree.value) {
+      return false;
+    }
+    isBinarySearch(tree.right);
+  }
+
+
+  return true;
+}
+
+// heightTree.left.key = 90;
+// heightTree.left.value = 90;
+// console.log('IS THIS A BINARY SEARCH TREE?', isBinarySearch(heightTree));

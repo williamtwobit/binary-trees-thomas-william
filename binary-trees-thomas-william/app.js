@@ -144,7 +144,7 @@ function populateTree(valArr){
   console.log('Tree: ', heightTree);
 }
 
-populateTree([69,65,83,89,81,85,84,73,79,78]);
+populateTree([69,65,83,89,81,85,84,73,79,78,90]);
 
 function findHeight(tree, depth=0){
   let height = 0;
@@ -193,3 +193,68 @@ function isBinarySearch(tree) {
 // heightTree.left.key = 90;
 // heightTree.left.value = 90;
 // console.log('IS THIS A BINARY SEARCH TREE?', isBinarySearch(heightTree));
+
+
+// function findThirdLargest(tree, swich=0, thirdLargest){
+//   if(!tree.right){
+//     if(tree.left){
+//       if(tree.left.left){
+//         thirdLargest = tree.left.left;
+//         return thirdLargest;
+//       }
+//       else{
+//         thirdLargest = tree.parent;
+//         return thirdLargest;
+//       }
+//     }
+//     else{
+//       thirdLargest = findThirdLargest(tree.parent, 1, thirdLargest);
+//     }
+//   }
+//   if(swich){
+//     if(tree.left){
+//       thirdLargest = tree.left;
+//       return thirdLargest;
+//     }
+//     else{
+//       thirdLargest = tree.parent;
+//       return thirdLargest;
+//     }
+//   }
+//   if(tree.right){
+//     thirdLargest = findThirdLargest(tree.right, swich, thirdLargest);
+//   }
+//   if(!thirdLargest.value){
+//     return thirdLargest;
+//   }
+//   else{
+//     return thirdLargest.value;
+//   }
+// }
+
+// console.log(findThirdLargest(heightTree));
+function findThirdLargest(stopAt, tree){
+  function thirdLargest(tree){
+    if(tree.right){
+      let value;
+      value = thirdLargest(tree.right);
+      if(stopAt === 0){
+        return value;
+      }
+    }
+    // console.log(tree.value);
+    stopAt--;
+    if(stopAt === 0){
+      return tree.value;
+    }
+    if(tree.left){
+      let value;
+      value = thirdLargest(tree.left);
+      return value;
+    }
+  }
+  return thirdLargest(tree);
+}
+
+
+console.log(findThirdLargest(3,heightTree));

@@ -110,3 +110,68 @@ class BinarySearchTree{
     return this.left._findMin();
   }
 }
+
+// const testTree = new BinarySearchTree;
+
+// function populateRandom(count){
+//   for(let i=0; i<count; i++){
+//     let num = Math.floor(Math.random() * 10);
+//     console.log('inserting:', num);
+//     testTree.insert(num);
+//   }
+//   console.log(testTree);
+// }
+
+// populateRandom(14);
+
+// function populateString(string){
+//   for(let i=0; i<string.length; i++){
+//     console.log('inserting:', string[i]);
+//     testTree.insert(string[i], string[i]);
+//   }
+//   console.log(testTree);
+// }
+
+// populateString('EASYQUESTION');
+
+
+const heightTree = new BinarySearchTree;
+
+function populateTree(valArr){
+  for(let i=0; i<valArr.length; i++){
+    heightTree.insert(valArr[i], valArr[i]);
+  }
+  console.log('Tree: ', heightTree);
+}
+
+populateTree([69,65,83,89,81,85,69,83,84,73,79,78]);
+
+function findHeight(tree, depth=0, height){
+  height = 0;
+  if(!tree.left && !tree.right){
+    console.log(tree);
+    console.log();
+    console.log('depth at bottom: ', depth);
+    if (depth > height){
+      height = depth;
+    }
+    console.log('height at bottom', height);
+    return height;
+  }
+  depth++;
+  if(tree.left){
+    let num = findHeight(tree.left, depth, height)
+    if(num > height){
+      height = num;
+    }
+  }
+  if(tree.right){
+    let num = findHeight(tree.right, depth, height);
+    if(num > height){
+      height = num;
+    }
+  }
+  return height;
+}
+
+console.log(`THE HEIGHT OF THE TREE IS:`, findHeight(heightTree));
